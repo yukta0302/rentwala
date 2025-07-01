@@ -1,0 +1,117 @@
+<%- include('partials/header') %>
+
+<section style="padding: 50px; max-width: 100%; margin: auto; display: flex; gap: 40px;">
+
+  <!-- LEFT: PRODUCTS -->
+  <div style="flex: 2;">
+    <h2>Checkout</h2>
+
+    <% if (cart.length === 0) { %>
+      <p>Your cart is empty.</p>
+    <% } else { %>
+      <% cart.forEach(item => { %>
+        <div style="display: flex; margin-bottom: 30px; border: 1px solid #eee; border-radius: 8px; overflow: hidden;">
+          <img src="<%= item.product.imageUrl %>" alt="<%= item.product.name %>" style="width: 180px; height: 120px; object-fit: cover;">
+          <div style="padding: 15px;">
+            <h3><%= item.product.name %></h3>
+            <p>Days: <%= item.days %> × Quantity: <%= item.quantity %></p>
+            <p>Price per day: ₹<%= item.product.amount %></p>
+            <p>Subtotal: ₹<%= item.product.amount * item.days * item.quantity %></p>
+          </div>
+        </div>
+      <% }) %>
+    <% } %>
+  </div>
+
+  <!-- RIGHT: BILLING SUMMARY -->
+  <div style="flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 25px; background: #bdbdb9f9; height: fit-content; width: 1000px;">
+    <h3>Billing Summary</h3>
+
+    <% let grandTotal = 0; %>
+    <% cart.forEach(item => { 
+      grandTotal += item.product.amount * item.days * item.quantity;
+    }); %>
+
+    <p>Products Rent: ₹<%= grandTotal %></p>
+    <p>Refundable Deposit: ₹200</p>
+    <p>Delivery + Packaging: ₹100</p>
+    <p>GST (18%): ₹<%= Math.round(grandTotal * 0.18) %></p>
+    <hr>
+    <h4>Total: ₹<%= grandTotal + 200 + 100 + Math.round(grandTotal * 0.18) %></h4>
+
+    <!-- PAYMENT OPTIONS -->
+    <form action="/checkout" method="POST" style="margin-top: 20px;">
+      <label>Shipping Address:</label><br>
+      <textarea name="shippingAddress" rows="3" style="width: 100%;" required></textarea><br><br>
+      <!-- Map Pin Location -->
+<div style="margin-top: 20px;">
+  <label>Pin Your Location:</label>
+  <div id="map" style="height: 300px; width: 100%; border-radius: 10px; margin-top: 10px;"></div>
+  <input type="hidden" id="latInput" name="latitude">
+  <input type="hidden" id="lngInput" name="longitude">
+</div>
+
+
+      <label>Payment Method:</label><br>
+      <select id="paymentMethod" name="paymentMethod" required style="width: 100%; padding: 8px;">
+        <option value="UPI">UPI</option>
+        <option value="Card">Debit/Credit Card</option>
+        <option value="COD">Cash on Delivery</option>
+      </select>
+
+      <!-- UPI QR -->
+      <div id="upiQR" style="display: none; margin: 15px 0;">
+        <p>Scan this QR to pay:</p>
+        <img src="/images/upi-qr-code.jpg" alt="UPI QR Code" style="width: 180px;">
+      </div>
+
+      <!-- CARD FORM -->
+      <div id="cardDetails" style="display: none; margin: 15px 0;">
+        <input type="text" placeholder="Card Number" style="width: 100%; padding: 8px; margin-bottom: 8px;"><br>
+        <input type="text" placeholder="Name on Card" style="width: 100%; padding: 8px; margin-bottom: 8px;"><br>
+        <input type="text" placeholder="Expiry Date" style="width: 100%; padding: 8px; margin-bottom: 8px;"><br>
+        <input type="text" placeholder="CVV" style="width: 100%; padding: 8px;">
+      </div>
+
+      <button type="submit" style="margin-top: 20px;">Confirm & Pay</button>
+    </form>
+  </div>
+
+</section>
+
+<script>
+  // Payment dropdown logic (already present)
+  const paymentMethod = document.getElementById('paymentMethod');
+  const upiQR = document.getElementById('upiQR');
+  const cardDetails = document.getElementById('cardDetails');
+
+  paymentMethod.addEventListener('change', () => {
+    upiQR.style.display = paymentMethod.value === 'UPI' ? 'block' : 'none';
+    cardDetails.style.display = paymentMethod.value === 'Card' ? 'block' : 'none';
+  });
+
+  // Leaflet map
+  const map = L.map('map').setView([22.3039, 70.8022], 13); // Default location: Rajkot, Gujarat
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+  }).addTo(map);
+
+  let marker;
+
+  map.on('click', function (e) {
+    const { lat, lng } = e.latlng;
+    if (marker) {
+      marker.setLatLng(e.latlng);
+    } else {
+      marker = L.marker(e.latlng).addTo(map);
+    }
+
+    // Set lat/lng to hidden inputs
+    document.getElementById('latInput').value = lat;
+    document.getElementById('lngInput').value = lng;
+  });
+</script>
+
+
+
+<%- include('partials/footer') %>

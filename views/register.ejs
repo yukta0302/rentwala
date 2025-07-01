@@ -1,0 +1,26 @@
+<%- include('partials/header') %>
+
+<section class="register-section" style="padding: 50px;">
+  <h2>Create Your RentWala Account</h2>
+  <form action="/register" method="POST" class="register-form">
+    
+    <div class="form-group">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" placeholder="John Doe" required />
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" placeholder="you@example.com" required />
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Create a password" required />
+    </div>
+
+    <button type="submit" class="register-btn">Register</button>
+  </form>
+</section>
+
+<%- include('partials/footer') %>

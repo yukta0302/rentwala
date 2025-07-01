@@ -1,0 +1,36 @@
+<%- include('partials/header') %>
+
+<section style="padding: 50px;">
+  <h2>Search Results for "<%= query %>"</h2>
+
+  <% if (products.length === 0) { %>
+    <p>No items found.</p>
+  <% } else { %>
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 30px; margin-top: 30px;">
+      <% products.forEach(product => { %>
+        <div style="border: 1px solid #ddd; border-radius: 12px; padding: 20px; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+          <img src="<%= product.imageUrl %>" alt="<%= product.name %>" style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px;">
+
+          <h3 style="margin: 12px 0 6px 0; font-size: 18px; color: #333;"><%= product.name %></h3>
+          <p style="margin: 0 0 10px; color: #666;">₹<%= product.amount %> / day</p>
+
+          <div style="display: flex; gap: 10px;">
+            <a href="/product/<%= product._id %>" style="flex: 1; text-align: center; background: #007bff; color: white; padding: 8px 12px; border-radius: 6px; text-decoration: none;">
+              View Details
+            </a>
+            <form action="/cart/add" method="POST" style="flex: 1;">
+              <input type="hidden" name="productId" value="<%= product._id %>">
+              <input type="hidden" name="days" value="1">
+              <input type="hidden" name="quantity" value="1">
+              <button type="submit" style="width: 100%; background: #28a745; color: white; border: none; padding: 8px 12px; border-radius: 6px; cursor: pointer;">
+                Rent Now
+              </button>
+            </form>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  <% } %>
+</section>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,35 @@
+<%- include('partials/header') %>
+
+<section style="padding: 80px; text-decoration: none; color: black;">
+  <h2>My Rentals</h2>
+
+  <% if (rentals.length === 0) { %>
+    <p>You haven’t rented anything yet!</p>
+    <a href="/categories" class="btn">Browse Products</a>
+  <% } else { %>
+    <table style="width: 100%; border-collapse: collapse;">
+      <thead>
+        <tr>
+          <th style="border: 1px solid #ddd; padding: 8px;">Product</th>
+          <th style="border: 1px solid #ddd; padding: 8px;">Days</th>
+          <th style="border: 1px solid #ddd; padding: 8px;">Total Paid</th>
+          <th style="border: 1px solid #ddd; padding: 8px;">Payment Method</th>
+          <th style="border: 1px solid #ddd; padding: 8px;">Rented At</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% rentals.forEach(rental => { %>
+          <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;"><%= rental.productName %></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><%= rental.days %></td>
+            <td style="border: 1px solid #ddd; padding: 8px;">₹<%= rental.totalAmount %></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><%= rental.paymentMethod %></td>
+            <td style="border: 1px solid #ddd; padding: 8px;"><%= rental.rentedAt.toDateString() %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } %>
+</section>
+
+<%- include('partials/footer') %>

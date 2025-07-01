@@ -1,0 +1,62 @@
+<footer style="
+  background-color: #1c1c1c;
+  color: #f0f0f0;
+  padding: 40px 20px 10px;
+  font-family: 'Segoe UI', sans-serif;
+  margin-top: auto;
+">
+  <div style="
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 70px;
+  ">
+    <!-- Brand & Tagline -->
+    <div style="flex: 1 1 200px; min-width: 250px;">
+      <h3 style="margin-bottom: 10px;">RentWala</h3>
+      <p style="color: #ccc;">Rent smart, live better. Access anything, anytime, without the burden of ownership.</p>
+    </div>
+
+    <!-- Quick Links -->
+    <div style="flex: 1 1 150px; min-width: 200px;">
+      <h4 style="margin-bottom: 10px;">Quick Links</h4>
+      <ul style="list-style: none; padding: 0; color: #ccc;">
+        <li><a href="/categories" style="color: #ccc; text-decoration: none;">Browse Categories</a></li>
+        <li><a href="/list-item" style="color: #ccc; text-decoration: none;">List Your Item</a></li>
+        <li><a href="/howitworks" style="color: #ccc; text-decoration: none;">How it Works</a></li>
+        <li><a href="/contact" style="color: #ccc; text-decoration: none;">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- Contact Info -->
+    <div style="flex: 1 1 150px; min-width: 200px;">
+      <h4 style="margin-bottom: 10px;">Contact</h4>
+      <p style="color: #ccc; margin: 0;">Email: support@rentwala.in</p>
+      <p style="color: #ccc; margin: 0;">Phone: +91-9876543210</p>
+      <p style="color: #ccc; margin: 0;">Location: Ahmedabad, India</p>
+    </div>
+
+    <!-- Newsletter -->
+    <div style="flex: 1 1 250px; min-width: 250px;">
+      <h4 style="margin-bottom: 10px;">Subscribe</h4>
+      <form action="/subscribe" method="POST" style="display: flex; gap: 10px; flex-wrap: wrap;">
+        <input type="email" name="email" placeholder="Your email" required
+          style="flex: 1; padding: 8px; border: none; border-radius: 4px;" />
+        <button type="submit"
+          style="background: #4b4bff; color: white; padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer;">
+          Subscribe
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <hr style="margin: 30px auto; border: 0.5px solid #444; width: 90%;" />
+
+  <div style="text-align: center; font-size: 0.9rem; color: #aaa;">
+    &copy; <%= new Date().getFullYear() %> RentWala. All rights reserved.
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<%- include('partials/header') %>
+
+<style>
+  .categories-section {
+    padding: 50px 20px;
+    max-width: 1200px;
+    margin: auto;
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  .categories-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+
+  .categories-section p {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 40px;
+  }
+
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+  }
+
+  .category-box {
+    background: #f8f8f8;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .category-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  }
+
+  .category-box h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  .category-box p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 15px;
+  }
+
+  .category-box a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 16px;
+    text-decoration: none;
+    background-color: #333;
+    color: #fff;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: background-color 0.3s;
+  }
+
+  .category-box a:hover {
+    background-color: #000;
+  }
+
+  /* Custom colored box accents */
+  .category-box.blue { border-top: 6px solid #2196F3; }
+  .category-box.yellow { border-top: 6px solid #FFEB3B; }
+  .category-box.green { border-top: 6px solid #4CAF50; }
+  .category-box.violet { border-top: 6px solid #9C27B0; }
+  .category-box.red { border-top: 6px solid #f44336; }
+  .category-box.shield { border-top: 6px solid #607D8B; }
+  .category-box.pink { border-top: 6px solid #E91E63; }
+  .category-box.dark { border-top: 6px solid #212121; }
+</style>
+
+<!-- Categories Section -->
+<section class="categories-section">
+  <h2>Browse Categories</h2>
+  <p>Find exactly what you need from our wide range of rental categories</p>
+
+  <div class="categories-grid">
+    <div class="category-box blue">
+      <h3>Home Appliances</h3>
+      <p>Refrigerators, Washing Machines, AC, etc.</p>
+      <a href="categories/home-appliances">Explore</a>
+    </div>
+
+    <div class="category-box yellow">
+      <h3>Electronics</h3>
+      <p>Laptops, Cameras, Speakers, etc.</p>
+      <a href="categories/electronics">Explore</a>
+    </div>
+
+    <div class="category-box green">
+      <h3>Furniture</h3>
+      <p>Sofas, Beds, Tables, Chairs, etc.</p>
+      <a href="categories/furniture">Explore</a>
+    </div>
+
+    <div class="category-box violet">
+      <h3>Event Supplies</h3>
+      <p>Tents, Speakers, Decorations, etc.</p>
+      <a href="categories/event-supplies">Explore</a>
+    </div>
+
+    <div class="category-box red">
+      <h3>Mobile Devices</h3>
+      <p>Smartphones, Tablets, Accessories, etc.</p>
+      <a href="categories/mobile-devices">Explore</a>
+    </div>
+
+    <div class="category-box shield">
+      <h3>Office Equipment</h3>
+      <p>Printers, Projectors, Desks, etc.</p>
+      <a href="categories/office-equipment">Explore</a>
+    </div>
+
+    <div class="category-box pink">
+      <h3>Automobiles</h3>
+      <p>Cars, Bikes, Scooters, etc.</p>
+      <a href="categories/automobiles">Explore</a>
+    </div>
+
+    <div class="category-box dark">
+      <h3>Tools & Equipment</h3>
+      <p>Power Tools, Gardening, Construction, etc.</p>
+      <a href="categories/tools-equipment">Explore</a>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

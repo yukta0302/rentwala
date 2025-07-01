@@ -1,0 +1,50 @@
+<%- include('partials/header') %>
+
+<section style="padding: 50px; max-width: 900px; margin: auto;">
+  <h2>Your Cart</h2>
+
+  <% if (items.length === 0) { %>
+    <p>Your cart is empty.</p>
+  <% } else { %>
+    <% let grandTotal = 0; %>
+
+    <% items.forEach(item => {
+      const subtotal = item.days * item.quantity * item.product.amount;
+      grandTotal += subtotal;
+    %>
+      <div style="
+        display: flex; 
+        align-items: flex-start; 
+        margin-bottom: 30px; 
+        background: #f8f8f8; 
+        border-radius: 8px; 
+        overflow: hidden;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      ">
+        <!-- 📸 Image on left -->
+        <div style="flex: 0 0 200px;">
+          <img src="<%= item.product.imageUrl %>" alt="<%= item.product.name %>" style="width: 100%; height: auto; display: block;">
+        </div>
+
+        <!-- 📝 Details on right -->
+        <div style="flex: 1; padding: 20px;">
+          <h3 style="margin-top: 0;"><%= item.product.name %></h3>
+          <p><strong>Price per day:</strong> ₹<%= item.product.amount %></p>
+          <p><strong>Days:</strong> <%= item.days %></p>
+          <p><strong>Quantity:</strong> <%= item.quantity %></p>
+          <p><strong>Subtotal:</strong> ₹<%= subtotal %></p>
+        </div>
+      </div>
+    <% }) %>
+
+    <h3 style="margin-top: 20px;">Grand Total: ₹<%= grandTotal %></h3>
+
+    <form action="/checkout" method="GET" style="margin-top: 30px;">
+      <button type="submit" style="padding: 10px 20px; background: #4b4bff; color: #fff; border: none; border-radius: 4px; cursor: pointer;">
+        Proceed to Checkout
+      </button>
+    </form>
+  <% } %>
+</section>
+
+<%- include('partials/footer') %>

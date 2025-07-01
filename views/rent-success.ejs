@@ -1,0 +1,63 @@
+<%- include('partials/header') %>
+
+<section style="padding: 60px; text-align: center;">
+  <h2 style="color: #28a745;">✅ Your Order Has Been Placed!</h2>
+  <p>Thank you for renting with <strong>RentWala</strong>. We’ll deliver your product(s) soon.</p>
+
+  <a href="/" style="
+    display: inline-block;
+    margin-top: 30px;
+    background: #4b4bff;
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.3s;">
+    Go to Homepage
+  </a>
+
+ <!-- Include Font Awesome for stars -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<form action="/submit-rating" method="POST" class="rating-form" style="text-align: center; margin: 50px 0;">
+  <h3>Rate Our Website</h3>
+  
+  <!-- Stars -->
+  <div class="stars" style="font-size: 2rem; cursor: pointer;">
+    <i class="far fa-star" data-value="1"></i>
+    <i class="far fa-star" data-value="2"></i>
+    <i class="far fa-star" data-value="3"></i>
+    <i class="far fa-star" data-value="4"></i>
+    <i class="far fa-star" data-value="5"></i>
+  </div>
+  
+  <!-- Hidden input to hold rating -->
+  <input type="hidden" name="rating" id="rating-input" value="0">
+
+  <p id="rating-value" style="margin-top: 10px;">Your Rating: 0</p>
+
+  
+<script>
+const stars = document.querySelectorAll('.stars i');
+const output = document.getElementById('rating-value');
+const ratingInput = document.getElementById('rating-input');
+
+stars.forEach(star => {
+  star.addEventListener('click', () => {
+    const rating = star.getAttribute('data-value');
+    output.textContent = `Your Rating: ${rating}`;
+    ratingInput.value = rating;
+    stars.forEach(s => s.classList.remove('fas'));
+    stars.forEach(s => s.classList.add('far'));
+    for (let i = 0; i < rating; i++) {
+      stars[i].classList.remove('far');
+      stars[i].classList.add('fas');
+    }
+  });
+});
+</script>
+
+
+</section>
+
+<%- include('partials/footer') %>

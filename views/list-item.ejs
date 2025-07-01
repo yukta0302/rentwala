@@ -1,0 +1,130 @@
+<%- include('partials/header') %>
+
+<style>
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f8f9fa;
+  }
+
+  .list-form-section {
+    max-width: 100%;
+    margin: 60px auto;
+    background: #fff;
+    border-radius: 12px;
+    
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  .list-form-section h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    color: #333;
+  
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #333;
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    transition: border 0.3s, box-shadow 0.3s;
+  }
+
+  input[type="file"] {
+    padding: 5px;
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+    outline: none;
+  }
+
+  .submit-btn {
+    width: 100%;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .submit-btn:hover {
+    background: #0056b3;
+  }
+
+  @media (max-width: 600px) {
+    .list-form-section {
+      padding: 30px 20px;
+    }
+  }
+</style>
+
+<section class="list-form-section" style="width: 150vh;">
+  <h2>List Your Item for Rent</h2>
+  <form action="/list-item" method="POST" enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="name">Product Name</label>
+      <input type="text" id="name" name="name" placeholder="e.g., LED TV, DSLR Camera" required />
+    </div>
+
+    <div class="form-group">
+      <label for="image">Upload Image</label>
+      <input type="file" id="image" name="image" accept="image/*" required />
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea id="description" name="description" rows="4" placeholder="Brief details about the item" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="amount">Rent Amount (per day)</label>
+      <input type="number" id="amount" name="amount" placeholder="e.g., 500" required />
+    </div>
+
+    <div class="form-group">
+      <label for="quantity">Quantity Available</label>
+      <input type="number" id="quantity" name="quantity" placeholder="e.g., 1" required />
+    </div>
+
+    <div class="form-group">
+      <label for="category">Category</label>
+      <select id="category" name="category" required>
+        <option value="">-- Select a Category --</option>
+        <option value="Home Appliances">Home Appliances</option>
+        <option value="Electronics">Electronics</option>
+        <option value="Furniture">Furniture</option>
+        <option value="Event Supplies">Event Supplies</option>
+        <option value="Mobile Devices">Mobile Devices</option>
+        <option value="Office Equipment">Office Equipment</option>
+        <option value="Automobiles">Automobiles</option>
+        <option value="Tools & Equipment">Tools & Equipment</option>
+      </select>
+    </div>
+
+    <button type="submit" class="submit-btn">Submit Item</button>
+  </form>
+</section>
+
+<%- include('partials/footer') %>

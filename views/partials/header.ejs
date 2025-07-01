@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title %></title>
+  <!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <link rel="stylesheet" href="/style.css" />
+</head>
+
+  <body style="margin: 0; padding: 0; min-height: 100vh; display: flex; flex-direction: column;">
+  <main style="flex: 1;">
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo"><a href="/" style="text-decoration: none;">Rent<span>Wala</span></a></div>
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="/categories">Categories</a>
+      <a href="/howitworks">How it Works</a>
+      <a href="/contact">Contact</a>
+      <a href="/cart">Cart</a>
+    </nav>
+      <div class="auth-buttons">
+
+        
+  <% if (user) { %>
+  <span>Hi, <%= user.name %></span>
+  <a href="/my-rentals" class="btn" style="text-decoration: none; color: rgb(236, 230, 230); ">My Rentals</a>
+  <a href="/logout" class="logout-btn">Logout</a>
+<% } else { %>
+  <a href="/login" class="sign-in" style="text-decoration: none; color: rgb(236, 230, 230); ">Sign In</a>
+  <a href="/register" class="register" style="text-decoration: none; color: rgb(241, 235, 235);">Register</a>
+<% } %>
+
+    
+  </header>
+  </main>
+</body>

@@ -1,0 +1,42 @@
+<%- include('../partials/header') %>
+
+<section class="category-products" style="padding: 50px;">
+  <h2><%= categoryName %> Products</h2>
+
+  <% if (products.length === 0) { %>
+    <p>No products listed yet.</p>
+  <% } %>
+
+  <div class="product-grid">
+  <% products.forEach(product => { %>
+    <div class="product-card">
+      <h3><%= product.name %></h3>
+      <img src="<%= product.imageUrl %>" alt="<%= product.name %>" style="width: 100%; height: 200px; object-fit: cover;">
+      <p><%= product.description %></p>
+      <p><strong>Price per day:</strong> ₹<%= product.amount %></p>
+
+      <div class="btn-group" style="margin-top: 10px;">
+        <!-- ✅ RENT NOW BUTTON (adds to cart) -->
+        <form action="/cart/add" method="POST" style="display: inline;">
+          <input type="hidden" name="productId" value="<%= product._id %>">
+          <input type="hidden" name="days" value="1">
+          <input type="hidden" name="quantity" value="1">
+          <button type="submit" style="background: #4b4bff; color: #fff; border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer;">
+            Rent Now
+          </button>
+        </form>
+
+        <!-- ✅ VIEW DETAILS BUTTON -->
+        <a href="/product/<%= product._id %>" style="background: #ddd; padding: 8px 16px; border-radius: 5px; text-decoration: none; margin-left: 10px;">
+          View Details
+        </a>
+      </div>
+    </div>
+  <% }); %>
+</div>
+
+</section>
+
+<%- include('../partials/footer') %>
+
+
